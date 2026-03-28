@@ -63,31 +63,31 @@ function App() {
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/verify-email" element={<VerifyEmailPage />} />
 
-            {/* Protected Routes */}
-            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/librarian" element={<ProtectedRoute><LibrarianDashboard /></ProtectedRoute>} />
-            <Route path="/books" element={<ProtectedRoute><BrowseBooks /></ProtectedRoute>} />
-            <Route path="/books/:id" element={<ProtectedRoute><BookDetails /></ProtectedRoute>} />
-            <Route path="/my-library" element={<ProtectedRoute><MyLibrary /></ProtectedRoute>} />
+            {/* Protected Routes - Now Public */}
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/librarian" element={<LibrarianDashboard />} />
+            <Route path="/books" element={<BrowseBooks />} />
+            <Route path="/books/:id" element={<BookDetails />} />
+            <Route path="/my-library" element={<MyLibrary />} />
             
-            {/* Librarian Only Routes */}
-            <Route path="/manage-books" element={<ProtectedRoute><ManageBooks /></ProtectedRoute>} />
-            <Route path="/manage-users" element={<ProtectedRoute><ManageUsers /></ProtectedRoute>} />
-            <Route path="/manage-categories" element={<ProtectedRoute><ManageCategories /></ProtectedRoute>} />
-            <Route path="/reports" element={<ProtectedRoute><ReportsPage /></ProtectedRoute>} />
-            <Route path="/history" element={<ProtectedRoute><div className="p-8">Transaction History (Coming Soon)</div></ProtectedRoute>} />
-            <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
-            <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
-            <Route path="/notifications" element={<ProtectedRoute><NotificationsPage /></ProtectedRoute>} />
+            {/* Librarian Only Routes - Now Public */}
+            <Route path="/manage-books" element={<ManageBooks />} />
+            <Route path="/manage-users" element={<ManageUsers />} />
+            <Route path="/manage-categories" element={<ManageCategories />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/history" element={<div className="p-8">Transaction History (Coming Soon)</div>} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
             
-            {/* Phase 1 - New Pages */}
-            <Route path="/faq" element={<ProtectedRoute><FAQPage /></ProtectedRoute>} />
-            <Route path="/borrowing-history" element={<ProtectedRoute><BorrowingHistoryPage /></ProtectedRoute>} />
+            {/* Phase 1 - New Pages - Now Public */}
+            <Route path="/faq" element={<FAQPage />} />
+            <Route path="/borrowing-history" element={<BorrowingHistoryPage />} />
             
-            {/* Phase 2 - Advanced Features */}
-            <Route path="/wishlist" element={<ProtectedRoute><WishlistPage /></ProtectedRoute>} />
-            <Route path="/advanced-search" element={<ProtectedRoute><AdvancedSearchPage /></ProtectedRoute>} />
-            <Route path="/reservations" element={<ProtectedRoute><ReservationPage /></ProtectedRoute>} />
+            {/* Phase 2 - Advanced Features - Now Public */}
+            <Route path="/wishlist" element={<WishlistPage />} />
+            <Route path="/advanced-search" element={<AdvancedSearchPage />} />
+            <Route path="/reservations" element={<ReservationPage />} />
             
             {/* Phase 3 - Static Pages & Legal */}
             <Route path="/about" element={<AboutPage />} />

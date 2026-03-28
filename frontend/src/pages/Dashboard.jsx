@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Book, Clock, Star, Search, ArrowRight, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Book, Clock, Star, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MainLayout from './MainLayout';
 import WelcomeBanner from '../components/WelcomeBanner';
@@ -8,22 +8,13 @@ import WelcomeBanner from '../components/WelcomeBanner';
 const Dashboard = () => {
   const { user } = useAuth();
 
-  const dashboardStats = [
-    { label: 'Active Borrowings', value: '3', icon: Book },
-    { label: 'Pending Returns', value: '1', icon: AlertCircle },
-    { label: 'My Reviews', value: '7', icon: Star },
-    { label: 'Wishlist', value: '12', icon: CheckCircle2 },
-  ];
-
   return (
     <MainLayout>
       <div className="space-y-8 animate-fade-in">
         <WelcomeBanner 
           userName={user?.username || 'Member'}
-          userRole="member"
           primaryText="Ready to explore some knowledge today?"
           secondaryText="Discover new books, track your borrowings, and connect with the library community"
-          stats={dashboardStats}
         />
 
         <div className="flex flex-wrap gap-3 mb-6">
@@ -35,7 +26,7 @@ const Dashboard = () => {
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <div className="card-compact bg-sky-50 dark:bg-sky-900/20 border-sky-100 dark:border-sky-800">
               <div className="text-3xl font-bold text-sky-600">0</div>
               <p className="text-muted mt-2">Active Borrowings</p>

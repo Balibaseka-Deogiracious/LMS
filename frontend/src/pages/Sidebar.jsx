@@ -8,7 +8,11 @@ import {
   Settings, 
   Database, 
   History,
-  ShieldCheck
+  ShieldCheck,
+  Heart,
+  Bookmark,
+  HelpCircle,
+  User
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -20,7 +24,14 @@ const Sidebar = () => {
     { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
     { icon: BookOpen, label: 'Catalog', path: '/books' },
     { icon: Library, label: 'My Library', path: '/my-library' },
-    { icon: History, label: 'History', path: '/history' },
+    { icon: History, label: 'History', path: '/borrowing-history' },
+  ];
+
+  const memberItems = [
+    { icon: Heart, label: 'Wishlist', path: '/wishlist' },
+    { icon: Bookmark, label: 'Reservations', path: '/reservations' },
+    { icon: HelpCircle, label: 'FAQ', path: '/faq' },
+    { icon: User, label: 'Profile', path: '/profile' },
   ];
 
   const adminItems = [
@@ -40,7 +51,37 @@ const Sidebar = () => {
         </Link>
       </div>
 
+      {/* Profile Section - Top */}
+      <div className="px-4 py-4">
+        <div className="flex flex-col items-center text-center p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700">
+          {/* Avatar */}
+          <div className="relative mb-3">
+            <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white font-bold text-2xl">
+              {user?.username?.[0].toUpperCase()}
+            </div>
+            <div className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white dark:border-slate-800"></div>
+          </div>
+
+          {/* Username */}
+          <p className="text-sm font-bold text-slate-900 dark:text-white mb-2 line-clamp-2">{user?.username}</p>
+
+          {/* Role Badge */}
+          <span className={`inline-flex items-center gap-1 mb-3 px-2 py-1 rounded-full text-[10px] font-semibold ${
+            isLibrarian 
+              ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300' 
+              : 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300'
+          }`}>
+            <span className={`w-1.5 h-1.5 rounded-full ${isLibrarian ? 'bg-blue-500' : 'bg-emerald-500'}`}></span>
+            {isLibrarian ? 'Librarian' : 'Member'}
+          </span>
+
+          {/* Email */}
+          <p className="text-xs text-slate-500 dark:text-slate-400 truncate w-full">{user?.email || 'member@library.local'}</p>
+        </div>
+      </div>
+
       <nav className="flex-1 px-4 py-2 space-y-1 overflow-y-auto">
+        <p className="px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 mt-2">Main</p>
         {menuItems.map((item) => (
           <NavLink key={item.path} to={item.path} className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-xl transition-smooth group ${isActive ? 'bg-sky-50 text-sky-600 dark:bg-sky-900/20' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
             <item.icon className="w-5 h-5" />
@@ -48,8 +89,16 @@ const Sidebar = () => {
           </NavLink>
         ))}
 
+        <p className="px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 mt-4">Library</p>
+        {memberItems.map((item) => (
+          <NavLink key={item.path} to={item.path} className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-xl transition-smooth group ${isActive ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+            <item.icon className="w-5 h-5" />
+            <span className="font-medium">{item.label}</span>
+          </NavLink>
+        ))}
+
         {isLibrarian && (
-          <div className="pt-6">
+          <div className="pt-4">
             <p className="px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Management</p>
             {adminItems.map((item) => (
               <NavLink key={item.path} to={item.path} className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-xl transition-smooth group ${isActive ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
@@ -62,18 +111,10 @@ const Sidebar = () => {
       </nav>
 
       <div className="p-4 border-t border-slate-100 dark:border-slate-800">
-        <div className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-2xl">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white font-bold">
-            {user?.username?.[0].toUpperCase()}
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-bold truncate text-slate-900 dark:text-white">{user?.username}</p>
-            <p className="text-[10px] text-muted truncate capitalize">{user?.role}</p>
-          </div>
-          <Link to="/settings" className="p-2 text-slate-400 hover:text-sky-600 transition-colors">
-            <Settings className="w-4 h-4" />
-          </Link>
-        </div>
+        <Link to="/settings" className="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800">
+          <Settings className="w-5 h-5" />
+          <span className="text-sm font-medium">Settings</span>
+        </Link>
       </div>
     </aside>
   );

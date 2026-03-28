@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, BookOpen, AlertCircle, Plus, FileText, Database, History, TrendingUp, Banknote } from 'lucide-react';
+import { Users, BookOpen, AlertCircle, Plus, FileText, Database, History, TrendingUp, Banknote, Settings, BarChart3, DollarSign, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import MainLayout from './MainLayout';
@@ -31,12 +31,7 @@ const LibrarianDashboard = () => {
     { label: 'Monthly Growth', value: '+14%', icon: TrendingUp, color: 'text-emerald-600', bg: 'bg-emerald-50' },
   ];
 
-  const welcomeStats = [
-    { label: 'Total Books', value: '1,284', icon: BookOpen },
-    { label: 'Active Members', value: '452', icon: Users },
-    { label: 'Pending Returns', value: '12', icon: AlertCircle },
-    { label: 'Growth', value: '+14%', icon: TrendingUp },
-  ];
+
 
   const categoryData = [
     { name: 'Fiction', value: 450 },
@@ -76,7 +71,6 @@ const LibrarianDashboard = () => {
           userRole="librarian"
           primaryText="Welcome to the Librarian Command Center"
           secondaryText="Manage your collection, track member activities, and generate insights"
-          stats={welcomeStats}
         />
 
         <div className="flex gap-3 mb-10">
@@ -89,7 +83,7 @@ const LibrarianDashboard = () => {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10">
           {stats.map((stat, idx) => (
             <motion.div 
               key={idx}
@@ -107,7 +101,7 @@ const LibrarianDashboard = () => {
         </div>
 
         {/* Quick Actions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-10">
           <Link to="/manage-users" className="card group hover:border-sky-500 transition-smooth">
             <div className="flex items-center gap-4">
               <div className="p-3 bg-sky-100 rounded-lg group-hover:bg-sky-600 group-hover:text-white transition-smooth">
@@ -132,7 +126,7 @@ const LibrarianDashboard = () => {
           </Link>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-10">
           {/* Borrowing Trends Chart */}
           <div className="lg:col-span-2 card bg-white dark:bg-slate-900 p-6">
             <h3 className="font-bold text-lg mb-8">Monthly Borrowing Trends</h3>
@@ -181,7 +175,7 @@ const LibrarianDashboard = () => {
         </div>
 
         {/* Fine Collection Revenue Area Chart */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-10">
           <div className="lg:col-span-3 card bg-white dark:bg-slate-900 p-6">
             <div className="flex items-center justify-between mb-8">
               <div>
@@ -222,7 +216,7 @@ const LibrarianDashboard = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {/* Recent Activity */}
           <div className="card">
             <div className="flex items-center justify-between mb-6">

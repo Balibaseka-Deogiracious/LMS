@@ -12,7 +12,6 @@ import {
   AlertCircle,
   CheckCircle2
 } from 'lucide-react';
-import MainLayout from './MainLayout';
 import WelcomeBanner from '../components/WelcomeBanner';
 import Tabs from '../components/Tabs';
 import Badge from '../components/Badge';
@@ -165,22 +164,24 @@ const SettingsPage = () => {
   ];
 
   return (
-    <MainLayout>
-      <div className="space-y-8 animate-fade-in">
-        <WelcomeBanner 
-          userName="Settings"
-          userRole="member"
-          primaryText="Customize your LMS experience"
-          secondaryText="Manage notifications, privacy, and display preferences"
-        />
-
-        <div className="max-w-3xl mx-auto">
-          <div className="card">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+      <div className="flex flex-col min-h-screen">
+        <nav className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 h-16 px-6 flex items-center">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Settings</h1>
+        </nav>
+        <main className="flex-1 p-4 md:p-8">
+          <div className="space-y-8 animate-fade-in max-w-4xl">
+            <WelcomeBanner 
+              userName="Settings"
+              userRole="member"
+              primaryText="Customize your LMS experience"
+              secondaryText="Manage notifications, privacy, and display preferences"
+            />
             <Tabs tabs={settingsTabs} onChange={setActiveTab} />
           </div>
-        </div>
+        </main>
       </div>
-    </MainLayout>
+    </div>
   );
 };
 
