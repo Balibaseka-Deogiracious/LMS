@@ -12,9 +12,16 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
-      <nav className="bg-white dark:bg-slate-800 shadow-subtle">
+      <nav className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md sticky top-0 z-10 shadow-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <h1 className="text-xl font-bold text-sky-600">LMS Dashboard</h1>
+          <div className="flex items-center gap-8">
+            <h1 className="text-xl font-bold text-sky-600">LMS</h1>
+            <div className="hidden md:flex items-center gap-6">
+              <Link to="/dashboard" className="text-sm font-semibold text-sky-600">Dashboard</Link>
+              <Link to="/books" className="text-sm font-medium text-muted hover:text-sky-600 transition-smooth">Catalog</Link>
+              <Link to="/my-library" className="text-sm font-medium text-muted hover:text-sky-600 transition-smooth">My Books</Link>
+            </div>
+          </div>
           <button
             onClick={handleLogout}
             className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-smooth"
@@ -49,7 +56,7 @@ const Dashboard = () => {
             </div>
 
             <div className="card-compact bg-indigo-50 dark:bg-indigo-900/20 border-indigo-100 dark:border-indigo-800">
-              <div className="text-3xl font-bold text-indigo-600">$0</div>
+              <div className="text-3xl font-bold text-indigo-600">Shs 0</div>
               <p className="text-muted mt-2">Outstanding Fines</p>
             </div>
           </div>

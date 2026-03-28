@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, Users, BookOpen, AlertCircle, Plus, FileText, Settings, Database } from 'lucide-react';
+import { TrendingUp, Users, BookOpen, AlertCircle, Plus, FileText, Settings, Database, History, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const LibrarianDashboard = () => {
@@ -82,18 +82,44 @@ const LibrarianDashboard = () => {
 
           {/* Recent Activity */}
           <div className="card">
-            <h3 className="font-bold text-lg mb-6">Recent Transactions</h3>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="font-bold text-lg">Recent Transactions</h3>
+              <History className="w-5 h-5 text-slate-400" />
+            </div>
             <div className="space-y-6">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="flex items-center gap-4 border-b border-slate-100 dark:border-slate-800 pb-4 last:border-0">
-                  <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800" />
-                  <div className="flex-1">
-                    <p className="text-sm font-semibold">User #{i*12} borrowed "Clean Code"</p>
-                    <p className="text-xs text-muted">2 hours ago</p>
+              {[
+                { user: "Musa K.", action: "borrowed", book: "Clean Code", time: "2 hours ago", status: "Active" },
+                { user: "Sarah A.", action: "returned", book: "The Great Gatsby", time: "5 hours ago", status: "Completed" },
+                { user: "John D.", action: "reserved", book: "React Design Patterns", time: "1 day ago", status: "Pending" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-4 border-b border-slate-100 dark:border-slate-800 pb-4 last:border-0">
+                  <div className="w-10 h-10 rounded-full bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center shrink-0">
+                    <span className="text-xs font-bold text-sky-600">{item.user.split(' ').map(n => n[0]).join('')}</span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold truncate">
+                      {item.user} <span className="font-normal text-muted">{item.action}</span> "{item.book}"
+                    </p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <p className="text-xs text-muted">{item.time}</p>
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
+                        item.status === 'Active' ? 'bg-emerald-100 text-emerald-700' : 
+                        item.status === 'Completed' ? 'bg-slate-100 text-slate-600' : 
+                        'bg-amber-100 text-amber-700'
+                      }`}>
+                        {item.status}
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
+            <Link 
+              to="/transactions" 
+              className="mt-6 block text-center text-sm font-semibold text-sky-600 hover:text-sky-700 transition-smooth"
+            >
+              View Full History
+            </Link>
           </div>
         </div>
       </div>

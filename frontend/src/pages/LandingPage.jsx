@@ -254,8 +254,8 @@ const LandingPage = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { name: 'Community', price: 'Free', features: ['Up to 1,000 Books', '50 Members', 'Basic Analytics'], recommended: false },
-              { name: 'Professional', price: '$49', features: ['Unlimited Books', '500 Members', 'Advanced Analytics', 'Email Notifications'], recommended: true },
-              { name: 'Institutional', price: '$199', features: ['Multiple Branches', 'Unlimited Members', 'API Access', '24/7 Priority Support'], recommended: false }
+              { name: 'Professional', price: 'Shs 180,000', features: ['Unlimited Books', '500 Members', 'Advanced Analytics', 'Email Notifications'], recommended: true },
+              { name: 'Institutional', price: 'Shs 750,000', features: ['Multiple Branches', 'Unlimited Members', 'API Access', '24/7 Priority Support'], recommended: false }
             ].map((plan, i) => (
               <div key={i} className={`card relative ${plan.recommended ? 'border-2 border-sky-500 shadow-sky-100' : ''}`}>
                 {plan.recommended && <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-sky-500 text-white px-4 py-1 rounded-full text-xs font-bold">RECOMMENDED</span>}
@@ -350,11 +350,11 @@ const LandingPage = () => {
             </div>
             <div className="flex flex-col items-center gap-2">
               <Phone className="w-6 h-6 text-sky-600" />
-              <span className="font-medium">+1 (555) 000-0000</span>
+              <span className="font-medium">+256 700 000000</span>
             </div>
             <div className="flex flex-col items-center gap-2">
               <MapPin className="w-6 h-6 text-sky-600" />
-              <span className="font-medium">San Francisco, CA</span>
+              <span className="font-medium">Plot 12, Kampala Rd, Kampala</span>
             </div>
           </div>
         </div>
