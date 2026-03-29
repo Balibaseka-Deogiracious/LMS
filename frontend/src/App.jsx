@@ -63,6 +63,9 @@ import AuditLogPage from './pages/Admin/AuditLogPage';
 import NotificationsAdminPage from './pages/Admin/NotificationsPage';
 import SendNotificationsPage from './pages/Admin/SendNotificationsPage';
 
+// Unified Member Portal
+import MemberPortal from './pages/MemberPortal';
+
 // Components
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -166,6 +169,9 @@ function App() {
             {/* Old Routes */}
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/notifications" element={<NotificationsPage />} />
+            
+            {/* Unified Member Portal */}
+            <Route path="/member-portal" element={<MemberPortal />} />
             
             {/* Phase 1 - New Pages - Now Public */}
             <Route path="/faq" element={<FAQPage />} />

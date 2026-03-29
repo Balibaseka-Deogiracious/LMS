@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import MainLayout from './MainLayout';
 import BookCard from './BookCard';
 import { Search, Filter, SlidersHorizontal, BookOpen } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const BrowseBooks = () => {
+  const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
